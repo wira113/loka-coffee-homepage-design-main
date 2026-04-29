@@ -1,0 +1,70 @@
+disini saya membuat database website kopi loka coffee
+pada website ini terdapat:
+
+table users berisikan
+- id tipe data integer 	[primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+-name tipe data varchar
+-email tipe data varchar
+- password tipe data varchar
+-phone tipe data varchar
+-avatar_url tipe data varchar 
+-role tipe data varchar 	[default: 'customer' artinya Hak akses: 'customer' atau 'admin'. Kalau tidak diisi → otomatis 'customer']
+-create_at tipe data timpestap [ default: now()  artinya Waktu akun dibuat, otomatis terisi saat insert
+-update_at tipe data timestap
+
+=====================================================================================================================================================
+
+table categories berisikan
+- id tipe data integer [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+- name varchar(50) ['Not Null' (Wajib diisi. Tidak boleh kosong. Kalau kamu coba simpan kategori tanpa nama → database akan error dan tolak datanya)].
+- slug varchar(50) ['unique ( Tidak boleh ada dua kategori dengan slug yang sama. Tapi boleh kosong (tidak ada not null))]
+-created_at timestap
+
+==========================================================================================================================================
+
+table product_type berisikan
+- id tipe data integer [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+- name tuoe data varchar ['Not Null' (Wajib diisi. Tidak boleh kosong. Kalau kamu coba simpan kategori tanpa nama → database akan error dan tolak datanya)].
+
+table products berisikan
+- id tipe data integer  [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+- Category_id tipe data integer yang berhubungan dengan tabel categories -> id
+- name tipe data varchar ['Not Null' (Wajib diisi. Tidak boleh kosong. Kalau kamu coba simpan kategori tanpa nama → database akan error dan tolak datanya)].
+- slug tipe data varchar ['unique ( Tidak boleh ada dua kategori dengan slug yang sama. Tapi boleh kosong (tidak ada not null))]
+-description tipe data text
+-price tipe data decimal
+- image_url tipe data varchar
+-is_availble tipe data boolean dengan default nya true
+-is_bestseller tipe data boolean dengan default nya false
+-created_at tipe data timestap dengan defaultnya now
+-update_at tipe data timestap
+
+==========================================================================================================================================
+
+
+Table product_reviews berisikan
+ -id          integer  [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)
+ -product_id  integer         [ref: > products.id] ( artinya berhubungan langsung di kolom id di tabel products
+ -user_id     integer         [ref: > users.id] ( artinya user,id berhubungan langsung di kolom id di tabel users
+ -rating      integer         [not null] (artinya rating tersebut tidak boleh kosong
+ -comment     text
+ -created_at  timestamp   [default: `now()`]
+
+===========================================================================================================================================
+
+
+Table carts berisikan
+  id          integer    [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+  user_id     integer         [ref: > users.id] ( artinya berhubungan langsung di kolom id di tabel user)
+  created_at  timestamp   [default: `now()`]
+
+===========================================================================================================================================
+
+table carts_item berisikan
+
+-id          integer  [primary key ( setiap data dalam tabel memiliki identitas unik), auto increment ( membuat nilai bertambah otomatis)]
+-cart_id     integer         [ref: > carts.id] (artiya berhubungan langsung di kolom id di tabel carts
+-product_id  integer         [ref: > products.id]
+-quantity    integer         [default: 1]
+-note        varchar(200)
+
